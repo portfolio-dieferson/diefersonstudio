@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Filho Come — Transforme a Alimentação do Seu Filho em 21 Dias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:       #29B6F6;
+      --blue-light: #81D4FA;
+      --blue-dark:  #0288D1;
+      --pink:       #F06292;
+      --pink-light: #F48FB1;
+      --pink-dark:  #C2185B;
+      --white:      #FFFFFF;
+      --off-white:  #F8FAFE;
+      --dark:       #0A0E1A;
+      --dark-2:     #111827;
+      --dark-3:     #1F2937;
+      --text:       #1a1a2e;
+      --muted:      #6B7280;
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Poppins', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); overflow-x: hidden; background: var(--dark); }
+
+    /* ── ANIMATIONS ─────────────────────────────── */
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0)   scale(1);    }
+      33%       { transform: translateY(-30px) scale(1.05); }
+      66%       { transform: translateY(15px)  scale(0.97); }
+    }
+    @keyframes pulseRing {
+      0%   { transform: scale(0.95); box-shadow: 0 0 0 0   rgba(240,98,146,.7); }
+      70%  { transform: scale(1);    box-shadow: 0 0 0 20px rgba(240,98,146,0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0   rgba(240,98,146,0); }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── HERO ───────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 100px;
+      overflow: hidden;
+      text-align: center;
+      background: linear-gradient(-45deg, #0A0E1A, #0D1B3E, #1a0a2e, #0D1B3E, #0a1a1e);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb-1 { width: 520px; height: 520px; background: rgba(41,182,246,.25);  top: -120px; left: -160px;  animation: float 10s ease-in-out infinite; }
+    .orb-2 { width: 420px; height: 420px; background: rgba(240,98,146,.22);  top: 50%;    right: -120px; animation: float 13s ease-in-out infinite reverse; transform-origin: center; }
+    .orb-3 { width: 300px; height: 300px; background: rgba(129,212,250,.15); bottom: -60px; left: 35%;   animation: float 8s ease-in-out infinite 2s; }
+
+    .hero-badge {
+      position: relative; z-index: 1;
+      display: inline-block;
+      padding: 6px 20px;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      border-radius: 50px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: white;
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      position: relative; z-index: 1;
+      font-family: var(--font-display);
+      font-size: clamp(72px, 16vw, 180px);
+      line-height: .88;
+      color: white;
+      letter-spacing: .01em;
+    }
+    .grad-text {
+      background: linear-gradient(135deg, var(--blue-light), var(--pink-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      position: relative; z-index: 1;
+      font-size: clamp(1rem, 2.8vw, 1.3rem);
+      color: rgba(255,255,255,.82);
+      max-width: 620px;
+      line-height: 1.65;
+      margin: 24px auto 40px;
+    }
+    .hero-cta-wrap {
+      position: relative; z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* ── BUTTONS ────────────────────────────────── */
+    .btn-primary {
+      display: inline-block;
+      padding: 18px 48px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: white;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: .06em;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      text-decoration: none;
+      animation: pulseRing 2.5s cubic-bezier(.455,.03,.515,.955) infinite;
+      transition: transform .2s, filter .2s;
+    }
+    .btn-primary:hover {
+      transform: scale(1.04);
+      filter: brightness(1.1);
+      animation: none;
+      box-shadow: 0 12px 40px rgba(240,98,146,.5);
+    }
+    .btn-primary-large {
+      display: inline-block;
+      padding: 22px 64px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: white;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: .06em;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      text-decoration: none;
+      animation: pulseRing 2.5s cubic-bezier(.455,.03,.515,.955) infinite;
+      transition: transform .2s, filter .2s;
+    }
+    .btn-primary-large:hover {
+      transform: scale(1.04);
+      filter: brightness(1.1);
+      animation: none;
+      box-shadow: 0 16px 60px rgba(240,98,146,.55);
+    }
+    .hero-price-hint { color: rgba(255,255,255,.5); font-size: .85rem; }
+    .hero-price-hint strong { color: rgba(255,255,255,.85); font-weight: 600; }
+
+    /* ── WAVE ───────────────────────────────────── */
+    .wave { width: 100%; overflow: hidden; line-height: 0; display: block; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ── SHARED LAYOUT ──────────────────────────── */
+    .container      { max-width: 860px;  margin: 0 auto; }
+    .container-wide { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 8vw, 80px);
+      line-height: 1;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    /* ── VIDEO SECTION ──────────────────────────── */
+    .video-section {
+      background: var(--dark-2);
+      padding: 88px 24px;
+      text-align: center;
+    }
+    .video-section .section-label { color: var(--blue-light); }
+    .video-wrap {
+      max-width: 800px;
+      margin: 48px auto 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 80px rgba(41,182,246,.3), 0 0 0 2px rgba(41,182,246,.2);
+      aspect-ratio: 16/9;
+      background: var(--dark-3);
+    }
+    .video-placeholder {
+      width: 100%; height: 100%;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: linear-gradient(135deg, #111827, #1e2d4a);
+    }
+    .play-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulseRing 3s ease infinite;
+    }
+    .play-icon svg { width: 32px; height: 32px; fill: white; margin-left: 4px; }
+    .video-placeholder p { color: rgba(255,255,255,.45); font-size: .85rem; }
+    .video-hint {
+      margin-top: 12px;
+      font-size: .72rem;
+      color: rgba(255,255,255,.25);
+      font-style: italic;
+    }
+
+    /* ── PROBLEM ────────────────────────────────── */
+    .problem-section {
+      background: var(--dark);
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .problem-section::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(240,98,146,.1) 0%, transparent 70%);
+      top: 50%; right: -200px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .problem-quote {
+      font-size: clamp(1.05rem, 2.8vw, 1.5rem);
+      color: rgba(255,255,255,.85);
+      line-height: 1.7;
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 32px 36px;
+      border-inline-start: 4px solid var(--pink);
+      background: rgba(240,98,146,.06);
+      border-radius: 0 14px 14px 0;
+    }
+    .problem-text p {
+      font-size: clamp(.95rem, 2.4vw, 1.15rem);
+      color: rgba(255,255,255,.72);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .problem-text p strong { color: white; }
+
+    /* ── SOLUTION ───────────────────────────────── */
+    .solution-section {
+      background: var(--off-white);
+      padding: 100px 24px;
+      text-align: center;
+    }
+    .solution-section .section-label { color: var(--blue-dark); }
+    .solution-section .section-title { color: var(--dark); }
+    .solution-desc {
+      font-size: clamp(1rem, 2.4vw, 1.15rem);
+      color: #374151;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .book-mockup { margin: 56px auto 0; max-width: 320px; }
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(145deg, #29B6F6, #1565C0, #880E4F, #F06292);
+      background-size: 300% 300%;
+      animation: gradientShift 6s ease infinite;
+      border-radius: 14px;
+      box-shadow: 20px 20px 60px rgba(0,0,0,.28), -5px 0 0 rgba(0,0,0,.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      color: white;
+      text-align: center;
+    }
+    .book-tag  { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; opacity: .75; margin-bottom: 16px; }
+    .book-name { font-family: var(--font-display); font-size: 3.4rem; line-height: 1; margin-bottom: 10px; }
+    .book-sub  { font-size: .82rem; opacity: .85; line-height: 1.5; }
+
+    /* ── BENEFITS ───────────────────────────────── */
+    .benefits-section {
+      padding: 100px 24px;
+      background: linear-gradient(180deg, #EBF8FF 0%, #FFF0F7 100%);
+      text-align: center;
+    }
+    .benefits-section .section-label { color: var(--blue-dark); }
+    .benefits-section .section-title { color: var(--dark); }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 60px;
+    }
+    .benefit-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.07);
+      border: 1px solid rgba(41,182,246,.15);
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--pink));
+    }
+    .benefit-card:hover { transform: translateY(-8px); box-shadow: 0 12px 48px rgba(41,182,246,.2); }
+    .benefit-number {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .benefit-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--dark);
+      letter-spacing: .03em;
+      margin-bottom: 12px;
+    }
+    .benefit-desc { font-size: .95rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── SOCIAL PROOF ───────────────────────────── */
+    .social-section {
+      background: var(--dark-2);
+      padding: 100px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .social-section::before {
+      content: '';
+      position: absolute;
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(41,182,246,.08) 0%, transparent 70%);
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+    }
+    .social-section .section-label { color: var(--blue-light); }
+    .social-section .section-title { color: white; }
+    .stars { color: #FFD700; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 8px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: start;
+      backdrop-filter: blur(10px);
+      transition: border-color .3s, background .3s;
+    }
+    .testimonial-card:hover { border-color: rgba(41,182,246,.4); background: rgba(41,182,246,.06); }
+    .testimonial-text { font-size: .92rem; color: rgba(255,255,255,.8); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: white; font-size: .88rem;
+      flex-shrink: 0;
+    }
+    .author-info strong { display: block; color: white; font-size: .88rem; }
+    .author-info span   { color: rgba(255,255,255,.4); font-size: .78rem; }
+    .social-count {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      margin-top: 64px;
+      flex-wrap: wrap;
+    }
+    .count-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      background: linear-gradient(135deg, var(--blue-light), var(--pink-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .count-label { color: rgba(255,255,255,.45); font-size: .78rem; margin-top: 4px; }
+
+    /* ── FAQ ────────────────────────────────────── */
+    .faq-section { background: var(--off-white); padding: 100px 24px; }
+    .faq-section .section-label { text-align: center; color: var(--blue-dark); }
+    .faq-section .section-title { text-align: center; color: var(--dark); }
+    .faq-list { margin-top: 60px; display: flex; flex-direction: column; gap: 16px; }
+    .faq-item {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid rgba(41,182,246,.15);
+      overflow: hidden;
+      transition: border-color .3s;
+    }
+    .faq-item.open { border-color: var(--blue); }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-align: start;
+    }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 300;
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner { padding: 0 28px 24px; color: var(--muted); font-size: .93rem; line-height: 1.75; }
+
+    /* ── CTA SECTION ────────────────────────────── */
+    .cta-section {
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+      padding: 100px 24px 120px;
+      text-align: center;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(-45deg, #0D1B3E, #1a0a2e, #0a1a1e, #2d0a1e);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+    .cta-orb-1 { width: 500px; height: 500px; background: rgba(41,182,246,.2);  top: -100px; left: -100px;    animation: float 10s ease-in-out infinite; }
+    .cta-orb-2 { width: 400px; height: 400px; background: rgba(240,98,146,.2);  bottom: -100px; right: -100px; animation: float 12s ease-in-out infinite reverse; }
+
+    .countdown-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--pink-light);
+      margin-bottom: 16px;
+    }
+    .countdown {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .countdown-unit { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .countdown-box {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      padding: 14px 20px;
+      min-width: 72px;
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: white;
+      line-height: 1;
+    }
+    .countdown-sep {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: rgba(255,255,255,.35);
+      padding-top: 14px;
+    }
+    .countdown-unit-label { font-size: .62rem; text-transform: uppercase; letter-spacing: .15em; color: rgba(255,255,255,.38); }
+    .price-block { margin-bottom: 40px; }
+    .price-old { font-size: .95rem; color: rgba(255,255,255,.38); text-decoration: line-through; margin-bottom: 6px; }
+    .price-label { font-size: .82rem; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+    .price-value {
+      font-family: var(--font-display);
+      font-size: clamp(60px, 12vw, 100px);
+      line-height: 1;
+      background: linear-gradient(135deg, var(--blue-light), var(--pink-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .price-installment { font-size: .85rem; color: rgba(255,255,255,.4); margin-top: 6px; }
+    .btn-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .guarantee-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-size: .82rem;
+      color: rgba(255,255,255,.6);
+      max-width: 420px;
+      text-align: start;
+    }
+    .guarantee-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .secure-icons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .secure-item { font-size: .72rem; color: rgba(255,255,255,.3); display: flex; align-items: center; gap: 5px; }
+
+    /* ── STICKY BAR ─────────────────────────────── */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(10,14,26,.96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 1000;
+      transform: translateY(100%);
+      transition: transform .4s ease;
+      flex-wrap: wrap;
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar p { color: rgba(255,255,255,.7); font-size: .82rem; }
+    .btn-sticky {
+      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: white;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: .04em;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: filter .2s, transform .2s;
+    }
+    .btn-sticky:hover { filter: brightness(1.15); transform: scale(1.03); }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    .footer { background: #060912; padding: 32px 24px; text-align: center; }
+    .footer p { font-size: .75rem; color: rgba(255,255,255,.22); line-height: 1.7; }
+    .footer a { color: rgba(255,255,255,.32); text-decoration: underline; }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero { padding: 60px 20px 80px; }
+      .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .social-count { gap: 24px; }
+      .countdown-box { min-width: 58px; font-size: 2rem; padding: 10px 14px; }
+      .btn-primary-large { padding: 18px 40px; font-size: 1.4rem; }
+      .sticky-bar p { display: none; }
+      .hero-orb { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════ -->
+<section class="hero" data-od-id="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-orb orb-3"></div>
+
+  <span class="hero-badge">E-BOOK DIGITAL &bull; ACESSO IMEDIATO</span>
+
+  <h1 class="hero-title">
+    MEU<br>
+    <span class="grad-text">FILHO</span><br>
+    COME
+  </h1>
+
+  <p class="hero-sub">
+    O método que ensina seu filho a comer de forma saudável em até 21 dias &mdash;
+    sem batalhas na hora da refeição, sem birras, sem culpa.
+  </p>
+
+  <div class="hero-cta-wrap">
+    <a href="#cta" class="btn-primary">QUERO O E-BOOK AGORA</a>
+    <p class="hero-price-hint">Por apenas <strong>R$&nbsp;37,90</strong> &bull; Acesso imediato</p>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,60 L0,30 Q360,0 720,30 Q1080,60 1440,30 L1440,60 Z" fill="#111827"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     VIDEO
+═══════════════════════════════════════════════════ -->
+<section class="video-section" data-od-id="video">
+  <p class="section-label fade-in">ASSISTA ANTES DE DECIDIR</p>
+  <h2 class="section-title fade-in">
+    Descubra o método em
+    <span class="grad-text">2 minutos</span>
+  </h2>
+
+  <div class="video-wrap fade-in">
+    <!--
+      ↓↓↓ SUBSTITUA ESTE BLOCO PELO SEU IFRAME DE VÍDEO ↓↓↓
+      Exemplo YouTube:
+      <iframe width="100%" height="100%"
+              src="https://www.youtube.com/embed/SEU_ID_AQUI?rel=0"
+              frameborder="0" allowfullscreen></iframe>
+    -->
+    <div class="video-placeholder">
+      <div class="play-icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <p>Seu vídeo de apresentação aqui</p>
+    </div>
+  </div>
+  <p class="video-hint">Substitua o bloco acima pelo seu iframe do YouTube ou Vimeo</p>
+</section>
+
+<!-- WAVE -->
+<div class="wave" style="background:#111827;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,0 L0,30 Q360,60 720,30 Q1080,0 1440,30 L1440,0 Z" fill="#0A0E1A"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PROBLEM
+═══════════════════════════════════════════════════ -->
+<section class="problem-section" data-od-id="problem">
+  <div class="container">
+    <p class="section-label fade-in" style="text-align:center;">VOCÊ CONHECE ESSE CENÁRIO?</p>
+    <h2 class="section-title fade-in" style="text-align:center;margin-bottom:48px;">
+      A hora da refeição<br>
+      <span class="grad-text" style="background-image:linear-gradient(135deg,#F48FB1,#F06292);">virou uma guerra</span>
+    </h2>
+
+    <blockquote class="problem-quote fade-in">
+      "Já tentei de tudo. Brócolis disfarçado, prato colorido, ameaça, choro&hellip;
+      nada funciona. Toda noite é a mesma batalha."
+    </blockquote>
+
+    <div class="problem-text">
+      <p class="fade-in">
+        Seu filho empurra o prato, faz birra e só aceita as <strong>mesmas 3 comidas de sempre</strong> —
+        enquanto você assiste preocupada, se perguntando se ele está crescendo direito.
+      </p>
+      <p class="fade-in">
+        A seletividade alimentar afeta <strong>1 em cada 4 crianças</strong> no Brasil,
+        e a maioria das mães tenta resolver sozinha, no improviso, sem nenhuma orientação real.
+      </p>
+      <p class="fade-in">
+        Não é falta de força de vontade sua. Você só nunca teve acesso a um método que
+        <strong>respeita o ritmo da criança</strong> e funciona na vida real —
+        no dia a dia corrido, sem precisar cozinhar três versões do jantar.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave" style="background:#0A0E1A;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,60 L0,20 Q360,60 720,20 Q1080,-20 1440,20 L1440,60 Z" fill="#F8FAFE"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SOLUTION
+═══════════════════════════════════════════════════ -->
+<section class="solution-section" data-od-id="solution">
+  <div class="container">
+    <p class="section-label fade-in">A SOLUÇÃO QUE VOCÊ ESTAVA PROCURANDO</p>
+    <h2 class="section-title fade-in" style="color:var(--dark);">
+      Chegou a hora do seu filho<br>
+      <span class="grad-text">comer de verdade</span>
+    </h2>
+    <p class="solution-desc fade-in">
+      <strong>Meu Filho Come</strong> é o e-book que reúne estratégias práticas e comprovadas
+      para transformar a relação do seu filho com a comida — de forma leve, sem drama
+      e do jeito que funciona na vida real.
+    </p>
+
+    <div class="book-mockup fade-in">
+      <div class="book-cover">
+        <span class="book-tag">E-book digital completo</span>
+        <div class="book-name">MEU FILHO COME</div>
+        <div class="book-sub">O método para acabar com a seletividade alimentar em até 21 dias</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     BENEFITS
+═══════════════════════════════════════════════════ -->
+<section class="benefits-section" data-od-id="benefits">
+  <div class="container-wide">
+    <p class="section-label fade-in">O QUE VOCÊ VAI CONQUISTAR</p>
+    <h2 class="section-title fade-in" style="color:var(--dark);">
+      3 transformações que<br>
+      <span class="grad-text">mudam tudo</span>
+    </h2>
+
+    <div class="benefits-grid">
+      <div class="benefit-card fade-in">
+        <div class="benefit-number">01</div>
+        <h3 class="benefit-title">MÉTODO COMPROVADO</h3>
+        <p class="benefit-desc">
+          Estratégias validadas por nutricionistas pediátricos que respeitam o desenvolvimento
+          da criança e funcionam até com os mais seletivos.
+        </p>
+      </div>
+
+      <div class="benefit-card fade-in">
+        <div class="benefit-number">02</div>
+        <h3 class="benefit-title">RESULTADOS EM 21 DIAS</h3>
+        <p class="benefit-desc">
+          Um plano semana a semana com ações progressivas — você acompanha cada mudança
+          acontecendo na frente dos seus olhos.
+        </p>
+      </div>
+
+      <div class="benefit-card fade-in">
+        <div class="benefit-number">03</div>
+        <h3 class="benefit-title">FÁCIL DE APLICAR</h3>
+        <p class="benefit-desc">
+          Linguagem simples, passo a passo direto — sem precisar de conhecimento técnico.
+          Funciona com a rotina corrida que você já tem.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SOCIAL PROOF
+═══════════════════════════════════════════════════ -->
+<section class="social-section" data-od-id="social-proof">
+  <div class="container-wide">
+    <p class="section-label fade-in">DEPOIMENTOS REAIS</p>
+    <h2 class="section-title fade-in">
+      Mães que já
+      <span class="grad-text">transformaram</span> a mesa
+    </h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">
+          "Meu filho de 4 anos só comia macarrão com manteiga. Depois de 3 semanas seguindo
+          o método, ele provou salada e pediu mais. Eu chorei de alegria na mesa."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AL</div>
+          <div class="author-info">
+            <strong>Ana Luíza M.</strong>
+            <span>Mãe do Pedro, 4 anos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-in">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">
+          "Não acreditava que um e-book fosse mudar tanto. As técnicas são simples, mas funcionam.
+          Em 2 semanas minha filha parou de chorar na hora do jantar."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">CM</div>
+          <div class="author-info">
+            <strong>Camila R.</strong>
+            <span>Mãe da Sofia, 3 anos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-in">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">
+          "Comprei com o coração na mão — já tinha gasto muito com nutricionista sem resultado.
+          O método aqui é diferente. Finalmente meu filho aceita legumes!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RF</div>
+          <div class="author-info">
+            <strong>Renata F.</strong>
+            <span>Mãe do Lucas, 5 anos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-count fade-in">
+      <div class="count-item">
+        <div class="count-number">+2.400</div>
+        <div class="count-label">famílias atendidas</div>
+      </div>
+      <div class="count-item">
+        <div class="count-number">97%</div>
+        <div class="count-label">aprovação</div>
+      </div>
+      <div class="count-item">
+        <div class="count-number">21</div>
+        <div class="count-label">dias para resultado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave" style="background:#111827;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,60 L0,30 Q360,0 720,30 Q1080,60 1440,30 L1440,60 Z" fill="#F8FAFE"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════════ -->
+<section class="faq-section" data-od-id="faq">
+  <div class="container">
+    <p class="section-label fade-in">DÚVIDAS FREQUENTES</p>
+    <h2 class="section-title fade-in">Suas perguntas, respondidas</h2>
+
+    <div class="faq-list fade-in">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Para qual faixa etária o método funciona?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">O método foi desenvolvido para crianças entre 1 e 8 anos, que é a fase em que a seletividade alimentar é mais comum. As estratégias são adaptáveis ao nível de desenvolvimento de cada criança — funciona tanto para bebês na introdução alimentar tardia quanto para crianças maiores com birras consolidadas.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Preciso ter conhecimento em nutrição para aplicar?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Não. O e-book foi escrito em linguagem simples e acessível para mães sem nenhum conhecimento técnico. Cada estratégia vem com passo a passo claro e exemplos práticos do dia a dia. Se você sabe cozinhar e conversar com seu filho, você já tem tudo que precisa.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Funciona se meu filho tiver restrições alimentares ou alergias?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Sim. As técnicas trabalham com o comportamento e a relação da criança com a comida, não com alimentos específicos. Você pode aplicar todos os princípios respeitando as restrições do seu filho — intolerância à lactose, alergia ao glúten ou qualquer outra condição.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Quanto tempo leva para ver os primeiros resultados?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">A maioria das mães relata mudanças visíveis na primeira semana — menos resistência, menos choro, maior curiosidade com novos alimentos. A transformação completa, com cardápio ampliado e refeições tranquilas, costuma acontecer entre 2 e 4 semanas de prática consistente.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          O acesso ao e-book é permanente?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Sim, totalmente. Após a compra você recebe o link de download e pode salvar em qualquer dispositivo — celular, tablet ou computador. O acesso é seu para sempre, sem mensalidade e sem prazo de validade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave" style="background:#F8FAFE;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,60 L0,30 Q360,0 720,30 Q1080,60 1440,30 L1440,60 Z" fill="#0A0E1A"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════════════ -->
+<section class="cta-section" id="cta" data-od-id="cta">
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+
+  <p class="countdown-label">OFERTA ESPECIAL ENCERRA EM:</p>
+
+  <div class="countdown">
+    <div class="countdown-unit">
+      <div class="countdown-box" id="cd-hours">23</div>
+      <span class="countdown-unit-label">horas</span>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <div class="countdown-box" id="cd-minutes">59</div>
+      <span class="countdown-unit-label">minutos</span>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <div class="countdown-box" id="cd-seconds">59</div>
+      <span class="countdown-unit-label">segundos</span>
+    </div>
+  </div>
+
+  <h2 class="section-title fade-in" style="color:white;margin-bottom:12px;">
+    Transforme a alimentação do seu filho
+    <span class="grad-text"> hoje mesmo</span>
+  </h2>
+
+  <div class="price-block fade-in">
+    <p class="price-old">De R$&nbsp;97,00</p>
+    <p class="price-label">por apenas</p>
+    <div class="price-value">R$&nbsp;37,90</div>
+    <p class="price-installment">acesso imediato após o pagamento</p>
+  </div>
+
+  <div class="btn-cta-wrap fade-in">
+    <a href="#" class="btn-primary-large">QUERO MEU E-BOOK AGORA</a>
+
+    <div class="guarantee-badge">
+      <span class="guarantee-icon">&#128737;</span>
+      <span>Garantia de 7 dias &mdash; se não gostar, devolvemos 100% do seu dinheiro sem perguntas.</span>
+    </div>
+  </div>
+
+  <div class="secure-icons fade-in">
+    <span class="secure-item">&#128274; Pagamento seguro</span>
+    <span class="secure-item">&#128241; Acesso imediato</span>
+    <span class="secure-item">&#128179; Cartão, PIX ou boleto</span>
+    <span class="secure-item">&#128214; Formato PDF</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>
+    &copy; 2025 Meu Filho Come &bull; Todos os direitos reservados<br>
+    <a href="#">Política de Privacidade</a> &middot; <a href="#">Termos de Uso</a> &middot; <a href="#">Contato</a><br>
+    <small>Este produto é um e-book digital. Os resultados podem variar de acordo com cada criança e a consistência na aplicação do método.</small>
+  </p>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="sticky-bar">
+  <p>Oferta especial por tempo limitado &mdash; <strong>R$&nbsp;37,90</strong></p>
+  <a href="#cta" class="btn-sticky">COMPRAR AGORA</a>
+</div>
+
+<script>
+  /* ── SCROLL FADE-IN ────────────────────────── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  /* ── FAQ ACCORDION ─────────────────────────── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  }
+
+  /* ── STICKY BAR ────────────────────────────── */
+  const stickyBar = document.getElementById('sticky-bar');
+  window.addEventListener('scroll', () => {
+    stickyBar.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+
+  /* ── COUNTDOWN (persists via localStorage) ─── */
+  (function () {
+    const KEY = 'mfc_deadline_v1';
+    let deadline = Number(localStorage.getItem(KEY));
+    if (!deadline || deadline < Date.now()) {
+      deadline = Date.now() + 23 * 3600000 + 59 * 60000 + 59000;
+      localStorage.setItem(KEY, deadline);
+    }
+
+    function tick() {
+      const diff = deadline - Date.now();
+      const safe = Math.max(diff, 0);
+      const h = Math.floor(safe / 3600000);
+      const m = Math.floor((safe % 3600000) / 60000);
+      const s = Math.floor((safe % 60000) / 1000);
+      document.getElementById('cd-hours').textContent   = String(h).padStart(2, '0');
+      document.getElementById('cd-minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-seconds').textContent = String(s).padStart(2, '0');
+      if (diff > 0) setTimeout(tick, 1000);
+    }
+    tick();
+  }());
+</script>
+</body>
+</html>
